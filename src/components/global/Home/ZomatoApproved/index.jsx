@@ -101,7 +101,7 @@ const ZomatoApproved = () => {
               onClick={handleGetImagesClick}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.98 }}
-              className="flex md:w-[160px] justify-center w-full text-center items-center gap-2 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white px-6 py-3 rounded-xl text-sm font-semibold shadow-md shadow-emerald-600/20 hover:shadow-lg hover:shadow-emerald-600/30 transition-all duration-300 cursor-pointer"
+              className="flex md:w-[160px] justify-center w-full text-center items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl text-sm font-semibold shadow-md shadow-green-600/20 hover:shadow-lg hover:shadow-green-600/30 transition-all duration-200 cursor-pointer"
             >
               Get Images
             </motion.a>

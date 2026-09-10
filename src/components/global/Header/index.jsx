@@ -81,7 +81,7 @@ export default function Header() {
             href={`${process.env.NEXT_PUBLIC_USER_APP_URL || "https://plus.foodsnap.in"}/`}
             target="_blank"
             onClick={() => handleGetStartedClick("Header Desktop")}
-            className="hidden md:inline-flex items-center gap-1.5 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white px-5 py-2 rounded-xl text-sm font-semibold shadow-sm hover:shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+            className="hidden md:inline-flex items-center gap-1.5 bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-xl text-sm font-semibold shadow-sm hover:shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4 }}
@@ -128,7 +128,7 @@ export default function Header() {
                 handleGetStartedClick("Header Mobile Drawer");
                 setIsOpen(false);
               }}
-              className="block w-full text-center mt-2 text-white bg-green-500 hover:bg-green-600 px-4 py-2 rounded-md text-sm font-semibold transition"
+              className="block w-full text-center mt-2 text-white bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md text-sm font-semibold transition"
             >
               Get Started
             </a>

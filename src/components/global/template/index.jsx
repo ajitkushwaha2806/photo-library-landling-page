@@ -75,7 +75,7 @@ const Template = ({ title = "", heading = "", description = "", ctaDescription =
                 <Link
                   href={ctaLink}
                   onClick={() => trackCTAClick(typeof ctaButton === "string" ? ctaButton : "CTA Button", "Policy Template Banner", ctaLink)}
-                  className="flex justify-center w-full md:w-auto items-center px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white font-semibold transition-all duration-200 shadow-md shadow-emerald-600/20 hover:scale-[1.02] cursor-pointer text-sm"
+                  className="flex justify-center w-full md:w-auto items-center px-6 py-3 rounded-xl bg-green-600 hover:bg-green-700 text-white font-semibold transition-all duration-200 shadow-md shadow-green-600/20 hover:scale-[1.02] cursor-pointer text-sm"
                 >
                   {ctaButton}
                 </Link>

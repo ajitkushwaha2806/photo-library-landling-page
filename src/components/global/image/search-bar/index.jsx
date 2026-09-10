@@ -41,7 +41,7 @@ const SearchBar = () => {
         <button
           type="submit"
           disabled={loadingSearch}
-          className="ml-2 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white px-5 sm:px-6 py-2.5 text-sm font-bold rounded-xl shadow-xs transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center cursor-pointer shrink-0"
+          className="ml-2 bg-green-600 hover:bg-green-700 text-white px-5 sm:px-6 py-2.5 text-sm font-semibold rounded-xl shadow-xs transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center cursor-pointer shrink-0"
         >
           {loadingSearch ? (
             <Loader2 className="animate-spin h-4 w-4 mx-auto" />

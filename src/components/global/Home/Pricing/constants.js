@@ -102,7 +102,7 @@ export const PLAN_TIER_CONFIGS = {
     accentColor:
       "border-emerald-400 shadow-xl shadow-emerald-600/10 ring-2 ring-emerald-400/40 bg-gradient-to-b from-emerald-50/70 via-white to-white",
     buttonClass:
-      "bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white shadow-lg shadow-emerald-600/25 font-semibold",
+      "bg-green-600 hover:bg-green-700 text-white shadow-md shadow-green-600/20 font-semibold",
     isFeatured: true,
   },
 };
