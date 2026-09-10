@@ -12,6 +12,7 @@ import {
   CalendarClock,
   XCircle,
 } from "lucide-react";
+import { trackFaqToggle } from "@/lib/analytics";
 
 const faqs = [
   {
@@ -60,16 +61,18 @@ export default function Faqs() {
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggle = (i) => {
-    setOpenIndex(openIndex === i ? null : i);
+    const isNowOpen = openIndex !== i;
+    setOpenIndex(isNowOpen ? i : null);
+    trackFaqToggle(faqs[i].question, isNowOpen);
   };
 
   return (
-    <section className="py-4 px-4 sm:px-8 w-full mx-auto text-neutral-900 dark:text-white">
-      <h2 className="text-4xl font-bold text-center mb-12">
-        📸 Frequently Asked Questions
+    <section className="py-8 px-4 sm:px-8 w-full mx-auto text-gray-900">
+      <h2 className="text-3xl sm:text-4xl font-extrabold text-center mb-10 tracking-tight">
+        📸 Frequently Asked <span className="bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">Questions</span>
       </h2>
 
-      <div className="space-y-4">
+      <div className="space-y-3.5">
         {faqs.map((faq, i) => {
           const Icon = faq.icon;
           const isOpen = openIndex === i;
@@ -77,20 +80,26 @@ export default function Faqs() {
           return (
             <motion.div
               key={i}
-              className={`rounded-md border border-neutral-200 dark:border-neutral-700 shadow-lg dark:shadow-black/20 bg-white/70 dark:bg-[#10101a]/70 backdrop-blur transition-colors overflow-hidden`}
-              whileHover={{ scale: 1.01 }}
+              className={`rounded-xl border transition-all duration-300 overflow-hidden bg-white ${
+                isOpen
+                  ? "border-emerald-300 shadow-md shadow-emerald-500/5 ring-1 ring-emerald-400/40"
+                  : "border-gray-200 shadow-sm hover:border-emerald-200"
+              }`}
+              whileHover={{ scale: 1.005 }}
             >
               <button
                 onClick={() => toggle(i)}
-                className={`w-full flex items-center justify-between px-5 py-4 text-left font-medium text-md md:text-lg transition-all duration-300 ${
+                className={`w-full flex items-center justify-between px-5 py-4 text-left font-medium text-base md:text-lg transition-all duration-300 cursor-pointer ${
                   isOpen
-                    ? "bg-indigo-100 dark:bg-[#1a183b]/60"
-                    : "hover:bg-indigo-50 dark:hover:bg-[#16142f]/40"
+                    ? "bg-emerald-50/70 text-emerald-950"
+                    : "hover:bg-emerald-50/30 text-gray-800"
                 }`}
               >
-                <div className="flex items-center gap-3">
-                  <Icon className="w-5 h-5 text-indigo-500 dark:text-indigo-400 shrink-0" />
-                  <span className="text-neutral-900 dark:text-white">
+                <div className="flex items-center gap-3.5">
+                  <div className={`p-1.5 rounded-lg transition-colors ${isOpen ? "bg-emerald-600 text-white" : "bg-emerald-100 text-emerald-700"}`}>
+                    <Icon className="w-4 h-4 shrink-0" />
+                  </div>
+                  <span className="font-semibold text-gray-900 text-sm sm:text-base">
                     {faq.question}
                   </span>
                 </div>
@@ -98,7 +107,7 @@ export default function Faqs() {
                   animate={{ rotate: isOpen ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <ChevronDown className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                  <ChevronDown className={`w-5 h-5 transition-colors ${isOpen ? "text-emerald-600" : "text-gray-400"}`} />
                 </motion.div>
               </button>
 
@@ -110,7 +119,7 @@ export default function Faqs() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="px-5 text-start py-5 text-sm sm:text-base text-neutral-700 dark:text-gray-300">
+                    <div className="px-6 py-4 text-start text-sm sm:text-base text-gray-600 leading-relaxed border-t border-emerald-100 bg-white">
                       {faq.answer}
                     </div>
                   </motion.div>

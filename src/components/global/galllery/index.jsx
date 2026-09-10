@@ -1,6 +1,20 @@
+"use client";
+
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import SearchBar from "../image/search-bar";
+import { trackViewContent, trackCTAClick } from "@/lib/analytics";
+
+const popularTags = [
+  "Biryani",
+  "Burger",
+  "Paneer Tikka",
+  "Dosa",
+  "Pizza",
+  "Momos",
+  "Cakes",
+];
 
 const IMAGES = [
   {
@@ -86,9 +100,18 @@ const IMAGES = [
 ];
 
 function MasonryItem({ img, index }) {
+  const handleItemClick = () => {
+    trackViewContent({
+      contentName: img.alt,
+      contentType: "food_gallery_item",
+      contentId: String(img.id),
+    });
+  };
+
   return (
     <motion.figure
-      className="group relative mb-4 break-inside-avoid overflow-hidden rounded-2xl shadow-sm ring-1 ring-black/5"
+      onClick={handleItemClick}
+      className="group relative mb-4 break-inside-avoid overflow-hidden rounded-2xl shadow-sm border border-gray-100 cursor-pointer hover:shadow-lg transition-shadow duration-300"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
@@ -107,32 +130,50 @@ function MasonryItem({ img, index }) {
       />
 
       <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-2 p-3 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-        <div className="rounded-xl bg-black/45 px-3 py-2 text-xs text-white backdrop-blur">
+        <div className="rounded-xl bg-black/65 px-3 py-2 text-xs font-medium text-white backdrop-blur-sm">
           {img.alt}
         </div>
       </figcaption>
 
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
     </motion.figure>
   );
 }
 
 export default function MasonryGallery() {
+  const handleTagClick = (tag) => {
+    trackCTAClick(`Popular Tag - ${tag}`, "Gallery Search Chips", `?search=${tag}`);
+    window.location.href = `${process.env.NEXT_PUBLIC_USER_APP_URL || "https://plus.foodsnap.in"}?search=${encodeURIComponent(tag)}`;
+  };
+
   return (
-    <section id="gallery" className="mx-auto max-w-7xl px-4 py-8">
+    <section id="gallery" className="mx-auto max-w-7xl px-4 py-12">
       <motion.div
-        className="mb-12"
+        className="mb-10 text-center max-w-2xl mx-auto"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.5 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl text-center md:text-5xl font-extrabold text-gray-900 dark:text-white leading-tight">
-          High Quality converting food photos
-        </h2>
-        <p className="mt-4 text-base md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          Discover the transformative power of high-quality food photography.
-        </p>
+        {/* Search Bar Feature replacing the title */}
+        <SearchBar />
+
+        {/* Quick Search Chips */}
+        <div className="flex items-center justify-center gap-1.5 sm:gap-2 mt-3.5 flex-wrap text-xs text-gray-500">
+          <span className="font-semibold text-gray-700 flex items-center gap-1">
+            🔥 Popular:
+          </span>
+          {popularTags.map((tag) => (
+            <button
+              key={tag}
+              type="button"
+              onClick={() => handleTagClick(tag)}
+              className="px-2.5 py-1 rounded-full bg-white border border-gray-200/90 hover:border-emerald-500 hover:bg-emerald-50 hover:text-emerald-700 font-medium text-gray-700 transition-all cursor-pointer shadow-2xs hover:shadow-xs"
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
       </motion.div>
 
       <div

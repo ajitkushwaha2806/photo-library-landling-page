@@ -39,10 +39,10 @@ export default function OutletCompare() {
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white">
-          Zomato Outlet Visual Comparison
+        <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
+          Zomato Outlet Visual <span className="bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">Comparison</span>
         </h2>
-        <p className="mt-4 text-gray-600 dark:text-gray-300 text-lg md:text-xl">
+        <p className="mt-4 text-gray-600 text-lg md:text-xl">
           Before vs After: See how our professionally curated images instantly
           upgrade your outlet’s appeal.
         </p>
@@ -56,10 +56,10 @@ export default function OutletCompare() {
           >
             {/* Before Image */}
             <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="relative rounded-xl overflow-hidden border shadow-md"
+              whileHover={{ scale: 1.01 }}
+              className="relative rounded-2xl overflow-hidden border border-red-200 shadow-sm bg-white"
             >
-              <span className="absolute top-2 right-2 bg-red-500 text-white text-xs px-3 py-1 rounded-md z-10 font-semibold shadow-md">
+              <span className="absolute top-3 right-3 bg-red-500 text-white text-xs px-3 py-1 rounded-md z-10 font-bold shadow-sm uppercase tracking-wider">
                 BEFORE
               </span>
               <Image
@@ -70,8 +70,8 @@ export default function OutletCompare() {
                 className="w-full h-auto object-cover filter blur-[0.6px] grayscale brightness-75"
               />
 
-              <div className="p-4 bg-white dark:bg-neutral-900">
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="p-4 bg-white border-t border-gray-100">
+                <p className="text-sm text-gray-600">
                   {item.before.desc}
                 </p>
               </div>
@@ -79,10 +79,10 @@ export default function OutletCompare() {
 
             {/* After Image */}
             <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="relative rounded-xl overflow-hidden border shadow-md"
+              whileHover={{ scale: 1.01 }}
+              className="relative rounded-2xl overflow-hidden border border-emerald-300 shadow-md ring-1 ring-emerald-400/30 bg-white"
             >
-              <span className="absolute top-2 right-2 bg-green-600 text-white text-xs px-3 py-1 rounded-md z-10 font-semibold shadow-md">
+              <span className="absolute top-3 right-3 bg-gradient-to-r from-emerald-600 to-green-600 text-white text-xs px-3 py-1 rounded-md z-10 font-bold shadow-sm uppercase tracking-wider">
                 AFTER
               </span>
               <Image
@@ -92,8 +92,8 @@ export default function OutletCompare() {
                 height={600}
                 className="w-full h-auto object-cover"
               />
-              <div className="p-4 bg-white dark:bg-neutral-900">
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="p-4 bg-emerald-50/40 border-t border-emerald-100">
+                <p className="text-sm font-medium text-emerald-950">
                   {item.after.desc}
                 </p>
               </div>

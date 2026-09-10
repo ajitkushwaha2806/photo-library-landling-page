@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Download, ImageDown, Image as ImageIcon, Loader2 } from "lucide-react";
+import { trackDownload, trackCTAClick, trackInitiateCheckout } from "@/lib/analytics";
 
 export default function DownloadDropdown({
   title = "Image",
@@ -20,6 +21,12 @@ export default function DownloadDropdown({
   const handleDownload = async (url, fileName) => {
     try {
       setLoading(true);
+      trackDownload({
+        fileName: fileName,
+        imageTitle: title,
+        type: "with_watermark",
+      });
+
       const response = await fetch(url);
       const blob = await response.blob();
       const link = document.createElement("a");
@@ -35,12 +42,23 @@ export default function DownloadDropdown({
     }
   };
 
+  const handleRemoveWatermarkClick = () => {
+    trackCTAClick("Remove Watermark", "Image Card Dropdown", withoutWatermarkUrl);
+    trackInitiateCheckout({
+      planKey: "remove_watermark",
+      planName: `Remove Watermark - ${title}`,
+      amount: 0,
+      currency: "INR",
+    });
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
           disabled={loading}
-          className="flex items-center justify-center gap-2 rounded-full bg-gray-800 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+          aria-label="Download image options"
+          className="flex items-center justify-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
         >
           {loading ? (
             <Loader2 className="w-5 h-5 animate-spin" />
@@ -52,14 +70,14 @@ export default function DownloadDropdown({
 
       <DropdownMenuContent
         align="end"
-        className="w-60 rounded-xl shadow-2xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-2 animate-slide-down"
+        className="w-60 rounded-xl shadow-xl border border-emerald-100 bg-white p-2 animate-slide-down"
       >
         <DropdownMenuItem
           onClick={() => handleDownload(withWatermarkUrl, `${title}.jpg`)}
-          className="flex items-center gap-3 rounded-lg px-4 py-2 cursor-pointer transition-all duration-300 hover:bg-blue-50 dark:hover:bg-blue-900"
+          className="flex items-center gap-3 rounded-lg px-4 py-2.5 cursor-pointer transition-all duration-200 hover:bg-emerald-50 text-gray-800"
         >
-          <ImageDown className="w-5 h-5 text-blue-500" />
-          <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
+          <ImageDown className="w-5 h-5 text-emerald-600" />
+          <span className="text-sm font-medium">
             Download
           </span>
         </DropdownMenuItem>
@@ -69,10 +87,11 @@ export default function DownloadDropdown({
             href={withoutWatermarkUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={handleRemoveWatermarkClick}
           >
-            <DropdownMenuItem className="flex items-center gap-3 rounded-lg px-4 py-2 cursor-pointer transition-all duration-300 hover:bg-purple-50 dark:hover:bg-purple-900">
-              <ImageIcon className="w-5 h-5 text-purple-500" />
-              <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
+            <DropdownMenuItem className="flex items-center gap-3 rounded-lg px-4 py-2.5 cursor-pointer transition-all duration-200 hover:bg-green-50 text-gray-800">
+              <ImageIcon className="w-5 h-5 text-green-600" />
+              <span className="text-sm font-medium">
                 Remove Watermark
               </span>
             </DropdownMenuItem>

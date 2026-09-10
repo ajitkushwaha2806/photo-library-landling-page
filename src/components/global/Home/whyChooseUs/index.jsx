@@ -28,8 +28,7 @@ const featureVariants = {
 export default function WhyChooseUs() {
   return (
     <section className="mt-24 px-4 md:px-0 max-w-6xl mx-auto text-center relative z-10">
-      {/* Optional Subtle Background for Light/Dark Mode */}
-      <div className="absolute inset-0 -z-10 rounded-3xl bg-gradient-to-br from-white via-neutral-100 to-white dark:from-transparent dark:via-white/5 dark:to-transparent blur-lg" />
+      <div className="absolute inset-0 -z-10 rounded-3xl bg-gradient-to-br from-emerald-50/50 via-white to-green-50/50 blur-lg pointer-events-none" />
 
       {/* Heading */}
       <motion.h2
@@ -37,9 +36,9 @@ export default function WhyChooseUs() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="text-3xl md:text-5xl font-extrabold text-gray-900 dark:text-white leading-tight"
+        className="text-3xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight"
       >
-        What Makes Our Photo Library Special?
+        What Makes Our Photo Library <span className="bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">Special?</span>
       </motion.h2>
 
       {/* Subheading */}
@@ -48,7 +47,7 @@ export default function WhyChooseUs() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className="text-gray-600 dark:text-neutral-300 mb-10 max-w-2xl mx-auto text-base md:text-lg"
+        className="text-gray-600 mb-10 max-w-2xl mx-auto text-base md:text-lg"
       >
         Designed exclusively for food businesses. Every photo is carefully
         curated, pre-approved by platforms like Zomato & Swiggy, and tailored to
@@ -65,16 +64,16 @@ export default function WhyChooseUs() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={featureVariants}
-            className="flex items-center gap-4 rounded-2xl border border-neutral-200 dark:border-white/10 p-5 md:p-6 bg-white dark:bg-white/10 shadow-lg hover:scale-[1.02] transition-all duration-300"
+            className="flex items-center gap-4 rounded-2xl border border-emerald-100 p-5 md:p-6 bg-white shadow-sm hover:shadow-md hover:border-emerald-300 hover:scale-[1.01] transition-all duration-300"
           >
             <motion.div
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.6 }}
-              className="bg-green-600 p-2 rounded-full text-white shrink-0"
+              className="bg-gradient-to-r from-emerald-600 to-green-600 p-2.5 rounded-xl text-white shrink-0 shadow-sm"
             >
               <CheckCircle size={18} />
             </motion.div>
-            <span className="text-left text-sm text-gray-800 dark:text-white leading-snug tracking-wide">
+            <span className="text-left text-sm font-semibold text-gray-800 leading-snug tracking-wide">
               {feature}
             </span>
           </motion.div>

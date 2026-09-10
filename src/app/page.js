@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Home from "@/components/global/Home";
 import { motion } from "framer-motion";
 import AnimatedBackground from "@/components/global/animated-background";
 
 export default function Page() {
   return (
-    <div className="relative bg-white dark:bg-[#0a0a1a] flex flex-col items-center justify-center overflow-hidden">
+    <div className="relative bg-white min-h-screen flex flex-col items-center justify-center overflow-hidden">
       <AnimatedBackground />
 
       <motion.div
