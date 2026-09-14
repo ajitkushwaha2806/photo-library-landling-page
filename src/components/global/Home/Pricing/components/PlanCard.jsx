@@ -90,7 +90,7 @@ export default function PlanCard({ plan, index }) {
               {includeUploadAddon ? displayTotal : plan.price}
             </span>
             <span className="text-xs text-gray-500 font-medium">
-              / pack
+              {plan.duration === 365 ? "/ year" : "/ month"}
             </span>
           </div>
           {config.perImage && (
