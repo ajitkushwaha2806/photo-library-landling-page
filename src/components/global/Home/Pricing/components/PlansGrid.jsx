@@ -13,7 +13,7 @@ export default function PlansGrid({ plans = [] }) {
       viewport={{ once: true }}
       transition={{ duration: 0.3 }}
     >
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 items-stretch mx-auto">
         {plans.map((plan, i) => (
           <PlanCard key={plan.key || plan._id || i} plan={plan} index={i} />
         ))}

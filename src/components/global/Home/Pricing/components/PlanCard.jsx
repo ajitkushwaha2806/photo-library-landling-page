@@ -11,8 +11,9 @@ export default function PlanCard({ plan, index }) {
   const config = getPlanTierConfig(plan.key);
   const Icon = config.icon;
 
+  const addonAmount = plan.uploadAddonAmount || 1000;
   const baseAmount = plan.discountedAmount || plan.amount || 499;
-  const totalAmount = includeUploadAddon ? baseAmount + 1000 : baseAmount;
+  const totalAmount = includeUploadAddon ? baseAmount + addonAmount : baseAmount;
   const displayTotal = `₹${totalAmount.toLocaleString("en-IN")}`;
 
   const handleAddonToggle = (nextValue) => {
@@ -21,7 +22,7 @@ export default function PlanCard({ plan, index }) {
       plan_key: plan.key,
       plan_name: plan.name,
       enabled: nextValue,
-      new_amount: nextValue ? baseAmount + 1000 : baseAmount,
+      new_amount: nextValue ? baseAmount + addonAmount : baseAmount,
     });
   };
 
@@ -142,7 +143,7 @@ export default function PlanCard({ plan, index }) {
                   <span>Upload on my behalf</span>
                 </span>
                 <span className="text-[11px] font-bold text-emerald-700 px-2 py-0.5 rounded bg-emerald-100 whitespace-nowrap">
-                  +₹1,000 / account
+                  +₹{addonAmount.toLocaleString("en-IN")} / account
                 </span>
               </div>
               <p className="text-[11px] text-gray-600 mt-1 leading-snug">

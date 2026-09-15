@@ -2,6 +2,27 @@ import { Sparkles, Crown } from "lucide-react";
 
 export const plans = [
   {
+    key: "starter",
+    name: "Starter Plan",
+    price: "₹299",
+    description: "Download 10 high-quality food images.",
+    features: [
+      "10 image downloads",
+      "Zomato & Swiggy approved photos",
+      "High-quality images",
+    ],
+    button: "Get Starter Plan",
+    link: "/payment/cart?plan=starter",
+    highlight: false,
+    duration: 30,
+    amount: 299,
+    discountedAmount: 299,
+    discountPercentage: 0,
+    taxPercentage: 18,
+    downloads: 10,
+    uploadAddonAmount: 499,
+  },
+  {
     key: "basic",
     name: "Basic Plan",
     price: "₹499",
@@ -21,6 +42,7 @@ export const plans = [
     discountPercentage: 0,
     taxPercentage: 18,
     downloads: 25,
+    uploadAddonAmount: 799,
   },
   {
     key: "pro",
@@ -43,35 +65,13 @@ export const plans = [
     discountPercentage: 0,
     taxPercentage: 18,
     downloads: 80,
+    uploadAddonAmount: 1199,
   },
   {
     key: "premium",
     name: "Premium Plan",
     price: "₹1,999",
-    description: "Download up to 1000 high-quality food images.",
-    features: [
-      "1000 image downloads",
-      "Full access to photo library",
-      "Zomato & Swiggy approved photos",
-      "Priority photo request handling",
-      "Exclusive new photo collections",
-      "High-quality images",
-    ],
-    button: "Go Premium",
-    link: "/payment/cart?plan=premium",
-    highlight: false,
-    duration: 30,
-    amount: 1999,
-    discountedAmount: 1999,
-    discountPercentage: 0,
-    taxPercentage: 18,
-    downloads: 1000,
-  },
-  {
-    key: "yearly",
-    name: "Yearly Plan",
-    price: "₹3,499",
-    description: "Download unlimited high-quality food images for a year.",
+    description: "Download unlimited high-quality food images.",
     features: [
       "Unlimited image downloads",
       "Full access to photo library",
@@ -80,15 +80,16 @@ export const plans = [
       "Exclusive new photo collections",
       "High-quality images",
     ],
-    button: "Get Yearly Plan",
-    link: "/payment/cart?plan=yearly",
+    button: "Go Premium",
+    link: "/payment/cart?plan=premium",
     highlight: true,
-    duration: 365,
-    amount: 3499,
-    discountedAmount: 3499,
+    duration: 30,
+    amount: 1999,
+    discountedAmount: 1999,
     discountPercentage: 0,
     taxPercentage: 18,
     downloads: "unlimited",
+    uploadAddonAmount: 1499,
   },
 ];
 
@@ -238,6 +239,17 @@ export const fssaiPlans = [
 ];
 
 export const PLAN_TIER_CONFIGS = {
+  starter: {
+    icon: Sparkles,
+    perImage: "₹29.90 / image",
+    tagline: "Great for expanding multi-cuisine restaurants",
+    badge: null,
+    badgeClass: "",
+    accentColor: "border-border/70 hover:border-primary/40",
+    buttonClass:
+      "border border-primary text-primary bg-primary/5 hover:bg-primary hover:text-primary-foreground font-semibold",
+    isFeatured: false,
+  },
   basic: {
     icon: Sparkles,
     perImage: "₹19.96 / image",
@@ -262,22 +274,9 @@ export const PLAN_TIER_CONFIGS = {
   },
   premium: {
     icon: Crown,
-    perImage: "1000 Images",
-    tagline: "High volume access for agencies & restaurant groups",
-    badge: "⭐ 1000 Images",
-    badgeClass:
-      "bg-primary text-primary-foreground font-semibold shadow-md shadow-primary/30",
-    accentColor:
-      "border-primary shadow-xl shadow-primary/10 ring-2 ring-primary/40 bg-gradient-to-b from-primary/5 via-card to-card",
-    buttonClass:
-      "bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25 font-semibold",
-    isFeatured: true,
-  },
-  yearly: {
-    icon: Crown,
     perImage: "Unlimited Downloads",
-    tagline: "Unlimited access for a full year",
-    badge: "⭐ Unlimited Access",
+    tagline: "High volume access for agencies & restaurant groups",
+    badge: "⭐ UNLIMITED ACCESS",
     badgeClass:
       "bg-primary text-primary-foreground font-semibold shadow-md shadow-primary/30",
     accentColor:
